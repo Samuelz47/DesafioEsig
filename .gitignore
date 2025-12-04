@@ -1,0 +1,18 @@
+# JAVA / INTELLIJ
+/backend/target/
+/backend/*.iml
+/backend/.idea/
+/backend/.mvn/wrapper/maven-wrapper.properties
+/backend/mvnw
+/backend/mvnw.cmd
+/backend/help.md
+
+# ANGULAR / NODE
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.angular/
+/frontend/.vscode/
+
+# GERAL
+.DS_Store
+*.log
