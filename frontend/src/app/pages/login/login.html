@@ -1,0 +1,45 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white text-center py-3">
+        <h4 class="mb-0 text-primary">Bem-vindo</h4>
+      </div>
+      <div class="card-body p-4">
+        
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
+
+        <form (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label">Usuário</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="loginData.login" 
+              name="login" 
+              required
+              placeholder="Ex: samuel">
+          </div>
+          
+          <div class="mb-4">
+            <label class="form-label">Senha</label>
+            <input 
+              type="password" 
+              class="form-control" 
+              [(ngModel)]="loginData.senha" 
+              name="senha" 
+              required>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer text-center py-3 bg-light">
+        <small>Não tem conta? <a routerLink="/register">Cadastre-se</a></small>
+      </div>
+    </div>
+  </div>
+</div>

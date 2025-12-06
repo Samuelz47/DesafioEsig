@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importando Bootstrap e Ícones */
+@use "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* Ajuste simples para o corpo da página */
+body {
+  background-color: #f8f9fa;
+  padding-top: 20px;
+}

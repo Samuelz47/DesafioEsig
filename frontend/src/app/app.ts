@@ -1,12 +1,20 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet, Router, RouterModule } from '@angular/router'; // Adicione RouterModule
+import { CommonModule } from '@angular/common'; // Importante para o *ngIf
+import { AuthService } from './services/auth';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, RouterModule], // Adicione imports
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('task-manager-front');
+export class AppComponent {
+  constructor(public authService: AuthService, private router: Router) {}
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }
