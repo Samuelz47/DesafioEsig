@@ -31,7 +31,7 @@ public class TarefaSpecification {
             }
 
             if (situacao != null) {
-                predicates.add(criteriaBuilder.equal(root.get("status"), situacao));
+                predicates.add(criteriaBuilder.equal(root.get("situacao"), situacao));
             }
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
