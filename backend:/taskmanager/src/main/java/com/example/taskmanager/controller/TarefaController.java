@@ -3,6 +3,7 @@ package com.example.taskmanager.controller;
 import com.example.taskmanager.dtos.TarefaRequestDTO;
 import com.example.taskmanager.dtos.TarefaResponseDTO;
 import com.example.taskmanager.mapper.TarefaMapper;
+import com.example.taskmanager.model.Situacao;
 import com.example.taskmanager.model.Tarefa;
 import com.example.taskmanager.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,20 +22,16 @@ public class TarefaController {
     private TarefaMapper mapper;
 
     @GetMapping
-    public ResponseEntity<List<TarefaResponseDTO>> listar () {
-        List<TarefaResponseDTO> lista = tarefaService.listarTodas()
-                .stream()
-                .map(mapper::toDTO)
-                .toList();
+    public ResponseEntity<List<Tarefa>> listar(@RequestParam(required = false) Long id, @RequestParam(required = false) String titulo, @RequestParam(required = false) String responsavel, @RequestParam(required = false) Situacao situacao) {
+        List<Tarefa> tarefas = tarefaService.listar(id, titulo, responsavel, situacao);
 
-        return ResponseEntity.ok(lista);
+        return ResponseEntity.ok(tarefas);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TarefaResponseDTO> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<Tarefa> buscarPorId(@PathVariable Long id) {
         return tarefaService.buscarPorId(id)
-                .map(mapper::toDTO)
-                .map(ResponseEntity::ok)
+                .map(tarefa -> ResponseEntity.ok(tarefa))
                 .orElse(ResponseEntity.notFound().build());
     }
 

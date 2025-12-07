@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../models/task.model';
 
@@ -11,8 +11,17 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
+  getTasks(filtro?: any): Observable<Task[]> {
+    let params = new HttpParams();
+
+    if (filtro) {
+      if (filtro.id) params = params.set('id', filtro.id);
+      if (filtro.titulo) params = params.set('titulo', filtro.titulo);
+      if (filtro.responsavel) params = params.set('responsavel', filtro.responsavel);
+      if (filtro.situacao) params = params.set('situacao', filtro.situacao);
+    }
+
+    return this.http.get<Task[]>(this.apiUrl, { params });
   }
 
   getTaskById(id: number): Observable<Task> {

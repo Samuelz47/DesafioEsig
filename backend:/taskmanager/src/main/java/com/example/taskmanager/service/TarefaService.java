@@ -1,11 +1,15 @@
 package com.example.taskmanager.service;
 
+import com.example.taskmanager.model.Situacao;
 import com.example.taskmanager.model.Tarefa;
 import com.example.taskmanager.repository.TarefaRepository;
+import com.example.taskmanager.repository.TarefaSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.data.jpa.domain.Specification;
+import jakarta.persistence.criteria.Predicate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +19,9 @@ public class TarefaService {
     private TarefaRepository tarefaRepository;
 
     @Transactional(readOnly = true)
-    public List<Tarefa> listarTodas() {
-        return tarefaRepository.findAll();
+    public List<Tarefa> listar(Long id, String titulo, String responsavel, Situacao situacao) {
+        Specification<Tarefa> spec = TarefaSpecification.comFiltros(id, titulo, responsavel, situacao);
+        return tarefaRepository.findAll(spec);
     }
 
     @Transactional
@@ -24,10 +29,7 @@ public class TarefaService {
         return tarefaRepository.save(tarefa);
     }
 
-    @Transactional(readOnly = true)
-    public Optional<Tarefa> buscarPorId(Long id) {
-        return tarefaRepository.findById(id);
-    }
+    public Optional<Tarefa> buscarPorId(Long id) { return tarefaRepository.findById(id); }
 
     @Transactional
     public void deletar(Long id) {
