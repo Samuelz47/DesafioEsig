@@ -7,7 +7,7 @@ import { LoginResponse, UserLogin } from '../models/auth.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/auth';
+  private apiUrl = 'https://gerenciadordetarefas-f8g8.onrender.com/auth';
 
   constructor(private http: HttpClient) { }
 

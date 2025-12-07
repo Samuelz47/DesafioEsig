@@ -7,7 +7,7 @@ import { Task } from '../models/task.model';
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:8080/api/tarefas';
+  private apiUrl = 'https://gerenciadordetarefas-f8g8.onrender.com/api/tarefas';
 
   constructor(private http: HttpClient) { }
 
