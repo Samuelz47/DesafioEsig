@@ -4,5 +4,5 @@ export interface LoginResponse {
 
 export interface UserLogin {
   login: string;
-  senha?: string; // Opcional pq as vezes não enviamos a senha de volta
+  senha?: string;
 }

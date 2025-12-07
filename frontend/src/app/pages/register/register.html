@@ -1,1 +1,68 @@
-<p>register works!</p>
+<div class="row justify-content-center mt-5">
+  <div class="col-md-5">
+    <div class="card shadow">
+      <div class="card-header bg-white text-center py-3">
+        <h4 class="mb-0 text-success">Crie sua Conta</h4>
+      </div>
+      <div class="card-body p-4">
+        
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="alert alert-success" role="alert">
+          {{ successMessage }}
+        </div>
+
+        <form (ngSubmit)="onSubmit()">
+          
+          <div class="mb-3">
+            <label class="form-label">Usuário</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              [(ngModel)]="registerData.login" 
+              name="login" 
+              placeholder="Escolha um nome de usuário"
+              required>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label">Senha</label>
+            <input 
+              type="password" 
+              class="form-control" 
+              [(ngModel)]="registerData.senha" 
+              name="senha" 
+              placeholder="Crie uma senha forte"
+              required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label d-block">Perfil de Acesso</label>
+            <div class="btn-group w-100" role="group">
+              <input type="radio" class="btn-check" name="role" id="user" value="USER" [(ngModel)]="registerData.role">
+              <label class="btn btn-outline-secondary" for="user">
+                <i class="bi bi-person"></i> Usuário
+              </label>
+
+              <input type="radio" class="btn-check" name="role" id="admin" value="ADMIN" [(ngModel)]="registerData.role">
+              <label class="btn btn-outline-dark" for="admin">
+                <i class="bi bi-shield-lock"></i> Admin
+              </label>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success btn-lg">
+              Cadastrar <i class="bi bi-person-plus"></i>
+            </button>
+          </div>
+
+        </form>
+      </div>
+      <div class="card-footer text-center py-3 bg-light">
+        <small>Já tem uma conta? <a routerLink="/login" class="text-decoration-none fw-bold">Faça Login</a></small>
+      </div>
+    </div>
+  </div>
+</div>
